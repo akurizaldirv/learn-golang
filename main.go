@@ -84,24 +84,41 @@ func main() {
 	// fmt.Println(sort.SearchStrings(hobbies, "Running"))  // 3 (index after sorted)
 	// fmt.Println(sort.SearchStrings(hobbies, "Runnings")) //when not found, returned length -- which is index out of bounds
 
-	cities := []string{"Lamongan", "Surabaya", "Malang"}
+	cities := []string{"Lamongan", "Surabaya", "Malang", "Pati", "Surakarta", "Jakarta", "Bandung"}
 
-	x := 0
-	for x < 5 {
-		fmt.Println("while loop value is x =", x)
-		x++
+	// x := 0
+	// for x < 5 {
+	// 	fmt.Println("while loop value is x =", x)
+	// 	x++
+	// }
+
+	// for x := 0; x < 5; x++ {
+	// 	fmt.Println("for loop value is x =", x)
+	// }
+
+	// for _, v := range cities { // replace index with _ to avoid error from not using index
+	// 	fmt.Println(v)
+	// }
+
+	// for i, v := range cities { // using index
+	// 	fmt.Printf("Index: %v --- Value: %v \n", i, v)
+	// }
+
+	age := 35
+	fmt.Println(age == 45)
+	fmt.Println(age <= 50)
+	fmt.Println(age >= 40)
+	fmt.Println(age != 45)
+
+	for i, v := range cities {
+		if i == 2 {
+			fmt.Println("Past this value")
+			continue
+		} else if i > 3 {
+			fmt.Println("Break after this")
+			break
+		}
+
+		fmt.Printf("Value at index: %v is %v \n", i, v)
 	}
-
-	for x := 0; x < 5; x++ {
-		fmt.Println("for loop value is x =", x)
-	}
-
-	for _, v := range cities { // replace index with _ to avoid error from not using index
-		fmt.Println(v)
-	}
-
-	for i, v := range cities { // using index
-		fmt.Printf("Index: %v --- Value: %v \n", i, v)
-	}
-
 }
