@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 	// fmt.Println("Hello")
@@ -54,9 +57,34 @@ func main() {
 	fmt.Println(names)
 
 	// slices range
-	hobbies := []string{"Fishing", "Running", "Fighting", "Killing"}
+	hobbies := []string{"Fishing ad Shad", "Running", "Fighting", "Killing"}
 	fmt.Println(hobbies[2:])
 	fmt.Println(hobbies[:3])
 	fmt.Println(hobbies[2:3])
+	fmt.Println(hobbies[0])
+
+	// hello := "Hello my friends!"
+	// fmt.Println(strings.Contains(hello, "ell"))            // true
+	// fmt.Println(strings.Contains(hello, "elo"))            // false
+	// fmt.Println(strings.ToUpper(hello))                    // HELLO MY FRIENDS!
+	// fmt.Println(strings.ReplaceAll(hello, "my", "fookin")) // Hello fookin friends!
+	// fmt.Println(strings.Index(hello, "my"))                // 6
+	// fmt.Println(strings.Index(hello, "myass"))             // -1
+	// fmt.Println(hello[2])                                  // 108
+	// fmt.Println(string(rune(hello[2])))                    // l
+	// fmt.Println(hello[2:10])                               // llo my f
+	// fmt.Println(hello[:8])                                 // Hello my
+
+	newAges := []int{20, 12, 13, 44, 23, 19, 29}
+
+	sort.Ints(newAges)                         // not return anything, but affect newAges
+	fmt.Println(newAges)                       // [12 13 19 20 23 29 44]
+	fmt.Println(sort.SearchInts(newAges, 20))  // 3 (index after sorted)
+	fmt.Println(sort.SearchInts(newAges, 999)) // 7 (when not found, returned length -- which is index out of bounds)
+
+	sort.Strings(hobbies)                                // not return anything, but affect hobbies
+	fmt.Println(hobbies)                                 // [Fighting Fishing ad Shad Killing Running]
+	fmt.Println(sort.SearchStrings(hobbies, "Running"))  // 3 (index after sorted)
+	fmt.Println(sort.SearchStrings(hobbies, "Runnings")) //when not found, returned length -- which is index out of bounds
 
 }
