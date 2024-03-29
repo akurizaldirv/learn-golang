@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strings"
 )
 
 func main() {
@@ -131,6 +132,28 @@ func main() {
 	// handler(names, circleArea()) // error, doesn't have mismatch type of parameter in parameter
 	fmt.Println(circleArea(3.5))
 	fmt.Println(circleArea(3))
+
+	fmt.Println(string(names[0][2]))
+
+	fmt.Println(getInitials("  "))
+	fmt.Println(getInitials("Bobi"))
+	fmt.Println(getInitials("Bobi Ilda"))
+}
+
+func getInitials(name string) (string, string) {
+	str := strings.Trim(name, " ")
+	if len(str) == 0 {
+		return "_", "_"
+	}
+
+	words := strings.Split(strings.Trim(name, " "), " ")
+	if len(words) < 1 {
+		return "_", "_"
+	} else if len(words) < 2 {
+		return strings.ToUpper(string(words[0][0])), "_"
+	} else {
+		return strings.ToUpper(string(words[0][0])), strings.ToUpper(string(words[len(words)-1][0]))
+	}
 }
 
 func sayBye(name string) {
