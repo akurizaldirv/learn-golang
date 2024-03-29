@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	// fmt.Println("Hello")
@@ -84,7 +87,7 @@ func main() {
 	// fmt.Println(sort.SearchStrings(hobbies, "Running"))  // 3 (index after sorted)
 	// fmt.Println(sort.SearchStrings(hobbies, "Runnings")) //when not found, returned length -- which is index out of bounds
 
-	cities := []string{"Lamongan", "Surabaya", "Malang", "Pati", "Surakarta", "Jakarta", "Bandung"}
+	// cities := []string{"Lamongan", "Surabaya", "Malang", "Pati", "Surakarta", "Jakarta", "Bandung"}
 
 	// x := 0
 	// for x < 5 {
@@ -104,21 +107,47 @@ func main() {
 	// 	fmt.Printf("Index: %v --- Value: %v \n", i, v)
 	// }
 
-	age := 35
-	fmt.Println(age == 45)
-	fmt.Println(age <= 50)
-	fmt.Println(age >= 40)
-	fmt.Println(age != 45)
+	// age := 35
+	// fmt.Println(age == 45)
+	// fmt.Println(age <= 50)
+	// fmt.Println(age >= 40)
+	// fmt.Println(age != 45)
 
-	for i, v := range cities {
-		if i == 2 {
-			fmt.Println("Past this value")
-			continue
-		} else if i > 3 {
-			fmt.Println("Break after this")
-			break
-		}
+	// for i, v := range cities {
+	// 	if i == 2 {
+	// 		fmt.Println("Past this value")
+	// 		continue
+	// 	} else if i > 3 {
+	// 		fmt.Println("Break after this")
+	// 		break
+	// 	}
 
-		fmt.Printf("Value at index: %v is %v \n", i, v)
+	// 	fmt.Printf("Value at index: %v is %v \n", i, v)
+	// }
+
+	names := []string{"Bobi", "Budi", "Buddha", "Binar"}
+	handler(names, sayBye)
+	handler(names, sayHello)
+	// handler(names, circleArea()) // error, doesn't have mismatch type of parameter in parameter
+	fmt.Println(circleArea(3.5))
+	fmt.Println(circleArea(3))
+}
+
+func sayBye(name string) {
+	fmt.Println("Good Bye,", name)
+}
+
+func sayHello(name string) {
+	fmt.Println("Hello,", name)
+}
+
+func circleArea(radius float32) float32 {
+	r2 := float32(math.Pow(float64(radius), 2)) // math.Pow return float64, i need to convert it first before operate
+	return math.Phi * r2
+}
+
+func handler(names []string, f func(string)) {
+	for _, v := range names {
+		f(v)
 	}
 }
