@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"sort"
-)
+import "fmt"
 
 func main() {
 	// fmt.Println("Hello")
@@ -43,25 +40,25 @@ func main() {
 	// fmt.Print(str)
 
 	// Arrays
-	var ages [3]int = [3]int{22, 23, 24}
-	var ages2 = [3]int{32, 33, 34}
-	ages3 := [3]int{42, 43, 44}
+	// var ages [3]int = [3]int{22, 23, 24}
+	// var ages2 = [3]int{32, 33, 34}
+	// ages3 := [3]int{42, 43, 44}
 
-	fmt.Println(ages, len(ages))
-	fmt.Println(ages2, len(ages2))
-	fmt.Println(ages3, len(ages3))
+	// fmt.Println(ages, len(ages))
+	// fmt.Println(ages2, len(ages2))
+	// fmt.Println(ages3, len(ages3))
 
-	// Slices : similar to array, but return new slice when append/pop
-	var names = []string{"mario", "luigi", "boni"}
-	names = append(names, "zaldi")
-	fmt.Println(names)
+	// // Slices : similar to array, but return new slice when append/pop
+	// var names = []string{"mario", "luigi", "boni"}
+	// names = append(names, "zaldi")
+	// fmt.Println(names)
 
-	// slices range
-	hobbies := []string{"Fishing ad Shad", "Running", "Fighting", "Killing"}
-	fmt.Println(hobbies[2:])
-	fmt.Println(hobbies[:3])
-	fmt.Println(hobbies[2:3])
-	fmt.Println(hobbies[0])
+	// // slices range
+	// hobbies := []string{"Fishing ad Shad", "Running", "Fighting", "Killing"}
+	// fmt.Println(hobbies[2:])
+	// fmt.Println(hobbies[:3])
+	// fmt.Println(hobbies[2:3])
+	// fmt.Println(hobbies[0])
 
 	// hello := "Hello my friends!"
 	// fmt.Println(strings.Contains(hello, "ell"))            // true
@@ -75,16 +72,36 @@ func main() {
 	// fmt.Println(hello[2:10])                               // llo my f
 	// fmt.Println(hello[:8])                                 // Hello my
 
-	newAges := []int{20, 12, 13, 44, 23, 19, 29}
+	// newAges := []int{20, 12, 13, 44, 23, 19, 29}
 
-	sort.Ints(newAges)                         // not return anything, but affect newAges
-	fmt.Println(newAges)                       // [12 13 19 20 23 29 44]
-	fmt.Println(sort.SearchInts(newAges, 20))  // 3 (index after sorted)
-	fmt.Println(sort.SearchInts(newAges, 999)) // 7 (when not found, returned length -- which is index out of bounds)
+	// sort.Ints(newAges)                         // not return anything, but affect newAges
+	// fmt.Println(newAges)                       // [12 13 19 20 23 29 44]
+	// fmt.Println(sort.SearchInts(newAges, 20))  // 3 (index after sorted)
+	// fmt.Println(sort.SearchInts(newAges, 999)) // 7 (when not found, returned length -- which is index out of bounds)
 
-	sort.Strings(hobbies)                                // not return anything, but affect hobbies
-	fmt.Println(hobbies)                                 // [Fighting Fishing ad Shad Killing Running]
-	fmt.Println(sort.SearchStrings(hobbies, "Running"))  // 3 (index after sorted)
-	fmt.Println(sort.SearchStrings(hobbies, "Runnings")) //when not found, returned length -- which is index out of bounds
+	// sort.Strings(hobbies)                                // not return anything, but affect hobbies
+	// fmt.Println(hobbies)                                 // [Fighting Fishing ad Shad Killing Running]
+	// fmt.Println(sort.SearchStrings(hobbies, "Running"))  // 3 (index after sorted)
+	// fmt.Println(sort.SearchStrings(hobbies, "Runnings")) //when not found, returned length -- which is index out of bounds
+
+	cities := []string{"Lamongan", "Surabaya", "Malang"}
+
+	x := 0
+	for x < 5 {
+		fmt.Println("while loop value is x =", x)
+		x++
+	}
+
+	for x := 0; x < 5; x++ {
+		fmt.Println("for loop value is x =", x)
+	}
+
+	for _, v := range cities { // replace index with _ to avoid error from not using index
+		fmt.Println(v)
+	}
+
+	for i, v := range cities { // using index
+		fmt.Printf("Index: %v --- Value: %v \n", i, v)
+	}
 
 }
