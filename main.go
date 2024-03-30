@@ -175,14 +175,33 @@ func main() {
 	// updatePointer(&name) // & mean get memory addres/pointer from variable
 	// fmt.Println(name)
 
-	src := []string{"asd", "qwe", "jkl"}
-	dst := make([]string, 4)
-	copy(dst, src) // copy value, not the pointer
-	fmt.Println("src:", src)
-	fmt.Println("dst:", src)
-	fmt.Println("src address:", &src[0])
-	fmt.Println("dst address:", &dst[0])
+	// src := []string{"asd", "qwe", "jkl"}
+	// dst := make([]string, 4)
+	// copy(dst, src) // copy value, not the pointer
+	// fmt.Println("src:", src)
+	// fmt.Println("dst:", src)
+	// fmt.Println("src address:", &src[0])
+	// fmt.Println("dst address:", &dst[0])
 
+	bill := makeBill("mario's bill")
+	fmt.Println(bill)
+	fmt.Println(bill.name)
+	fmt.Println(bill.items)
+	fmt.Println(bill.tip)
+}
+
+type bill struct {
+	name  string
+	items map[string]float64
+	tip   float64
+}
+
+func makeBill(name string) bill {
+	return bill{
+		name:  name,
+		items: map[string]float64{},
+		tip:   0,
+	}
 }
 
 // func update(name string) {
