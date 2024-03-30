@@ -185,8 +185,10 @@ func main() {
 
 	bill := makeBill("mario's bill")
 	bill.items = map[string]float64{"pie": 25, "burger": 60}
+	bill.tip = 20
 
-	fmt.Println(bill.tip)
+	bill.updateTip(30)
+	bill.addItem("coca cola", 35)
 
 	billBreakdown := bill.format()
 	fmt.Println(billBreakdown)
@@ -196,6 +198,14 @@ type bill struct {
 	name  string
 	items map[string]float64
 	tip   float64
+}
+
+func (b *bill) updateTip(tip float64) {
+	b.tip = tip
+}
+
+func (b *bill) addItem(name string, price float64) {
+	b.items[name] = price
 }
 
 func makeBill(name string) bill {
@@ -208,7 +218,7 @@ func makeBill(name string) bill {
 
 func (bill bill) format() string {
 	str := bill.name + "'s bill break down : \n"
-	total := 0.0
+	total := bill.tip
 
 	for k, v := range bill.items {
 		item := fmt.Sprintf("%-25v %0.2f \n", k, v)
@@ -216,7 +226,9 @@ func (bill bill) format() string {
 		total += v
 	}
 
-	str += "==============================\n"
+	str += fmt.Sprintf("%-25v %0.2f \n", "tip", bill.tip)
+
+	str += "===============================\n"
 	str += fmt.Sprintf("%-25v %0.2f", "TOTAL", total)
 
 	return str
