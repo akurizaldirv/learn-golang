@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func main() {
 	// fmt.Println("Hello")
@@ -124,16 +122,48 @@ func main() {
 	// 	fmt.Printf("Value at index: %v is %v \n", i, v)
 	// }
 
-	names := []string{"Bobi", "Budi", "Buddha", "Binar"}
-	handler(names, sayBye)
-	handler(names, sayHello)
-	// handler(names, circleArea()) // error, doesn't have mismatch type of parameter in parameter
-	fmt.Println(circleArea(3.5))
-	fmt.Println(circleArea(3))
+	// names := []string{"Bobi", "Budi", "Buddha", "Binar"}
+	// handler(names, sayBye)
+	// handler(names, sayHello)
+	// // handler(names, circleArea()) // error, doesn't have mismatch type of parameter in parameter
+	// fmt.Println(circleArea(3.5))
+	// fmt.Println(circleArea(3))
 
-	fmt.Println(string(names[0][2]))
+	// fmt.Println(string(names[0][2]))
 
-	fmt.Println(getInitials("  "))
-	fmt.Println(getInitials("Bobi"))
-	fmt.Println(getInitials("Bobi Ilda"))
+	// fmt.Println(getInitials("  "))
+	// fmt.Println(getInitials("Bobi"))
+	// fmt.Println(getInitials("Bobi Ilda"))
+
+	menu := map[string]float32{
+		"salad":    6.44,
+		"pear":     2.44,
+		"burger":   10.44,
+		"sandwich": 7.44,
+	}
+
+	fmt.Println(menu)
+	fmt.Println(menu["pear"])
+
+	phonebook := map[int]string{
+		123123: "Luigi",
+		909090: "Police",
+		209083: "Bomber",
+	}
+
+	fmt.Println(phonebook)
+	fmt.Println(phonebook[123123])
+
+	phonebook[123123] = "Doni"
+	phonebook[909090] = "Boni"
+	phonebook[908978] = "Minnah"
+
+	fmt.Println(phonebook)
+
+	var fruits = make([]string, 2)
+	fmt.Println(fruits[0] == "")
+
+	for key, val := range phonebook {
+		fmt.Printf("Key: %v --- Val: %v \n", key, val)
+	}
 }
