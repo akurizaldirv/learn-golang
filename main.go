@@ -167,21 +167,30 @@ func main() {
 	// 	fmt.Printf("Key: %v --- Val: %v \n", key, val)
 	// }
 
-	name := "zaldi"
-	update(name)
-	fmt.Println(name)
+	// name := "zaldi"
+	// update(name)
+	// fmt.Println(name)
 
-	fmt.Println(&name)
-	updatePointer(&name) // & mean get memory addres/pointer from variable
-	fmt.Println(name)
+	// fmt.Println(&name)
+	// updatePointer(&name) // & mean get memory addres/pointer from variable
+	// fmt.Println(name)
+
+	src := []string{"asd", "qwe", "jkl"}
+	dst := make([]string, 4)
+	copy(dst, src) // copy value, not the pointer
+	fmt.Println("src:", src)
+	fmt.Println("dst:", src)
+	fmt.Println("src address:", &src[0])
+	fmt.Println("dst address:", &dst[0])
+
 }
 
-func update(name string) {
-	name = "new name" // update name, but not returned, so it doesn't affect other scope
-}
+// func update(name string) {
+// 	name = "new name" // update name, but not returned, so it doesn't affect other scope
+// }
 
-func updatePointer(name *string) {
-	fmt.Println("Pointer :", name)
-	*name = "new name by pointer" // update direct to pointer/memory address
-	// // * mean get value from a pointer
-}
+// func updatePointer(name *string) {
+// 	fmt.Println("Pointer :", name)
+// 	*name = "new name by pointer" // update direct to pointer/memory address
+// 	// // * mean get value from a pointer
+// }
