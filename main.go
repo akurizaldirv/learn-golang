@@ -135,35 +135,53 @@ func main() {
 	// fmt.Println(getInitials("Bobi"))
 	// fmt.Println(getInitials("Bobi Ilda"))
 
-	menu := map[string]float32{
-		"salad":    6.44,
-		"pear":     2.44,
-		"burger":   10.44,
-		"sandwich": 7.44,
-	}
+	// menu := map[string]float32{
+	// 	"salad":    6.44,
+	// 	"pear":     2.44,
+	// 	"burger":   10.44,
+	// 	"sandwich": 7.44,
+	// }
 
-	fmt.Println(menu)
-	fmt.Println(menu["pear"])
+	// fmt.Println(menu)
+	// fmt.Println(menu["pear"])
 
-	phonebook := map[int]string{
-		123123: "Luigi",
-		909090: "Police",
-		209083: "Bomber",
-	}
+	// phonebook := map[int]string{
+	// 	123123: "Luigi",
+	// 	909090: "Police",
+	// 	209083: "Bomber",
+	// }
 
-	fmt.Println(phonebook)
-	fmt.Println(phonebook[123123])
+	// fmt.Println(phonebook)
+	// fmt.Println(phonebook[123123])
 
-	phonebook[123123] = "Doni"
-	phonebook[909090] = "Boni"
-	phonebook[908978] = "Minnah"
+	// phonebook[123123] = "Doni"
+	// phonebook[909090] = "Boni"
+	// phonebook[908978] = "Minnah"
 
-	fmt.Println(phonebook)
+	// fmt.Println(phonebook)
 
-	var fruits = make([]string, 2)
-	fmt.Println(fruits[0] == "")
+	// var fruits = make([]string, 2)
+	// fmt.Println(fruits[0] == "")
 
-	for key, val := range phonebook {
-		fmt.Printf("Key: %v --- Val: %v \n", key, val)
-	}
+	// for key, val := range phonebook {
+	// 	fmt.Printf("Key: %v --- Val: %v \n", key, val)
+	// }
+
+	name := "zaldi"
+	update(name)
+	fmt.Println(name)
+
+	fmt.Println(&name)
+	updatePointer(&name) // & mean get memory addres/pointer from variable
+	fmt.Println(name)
+}
+
+func update(name string) {
+	name = "new name" // update name, but not returned, so it doesn't affect other scope
+}
+
+func updatePointer(name *string) {
+	fmt.Println("Pointer :", name)
+	*name = "new name by pointer" // update direct to pointer/memory address
+	// // * mean get value from a pointer
 }
