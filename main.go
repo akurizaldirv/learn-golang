@@ -199,9 +199,15 @@ func main() {
 	// billBreakdown := bill.format()
 	// fmt.Println(billBreakdown)
 
-	b := makeBill()
-	promptOptions(b)
-	fmt.Println(b.format())
+	// b := makeBill()
+	// promptOptions(b)
+	// fmt.Println(b.format())
+
+	slices := make([]string, 2, 5)
+	slices = append(slices, "Eko")
+	slices = append(slices, "Eko")
+	slices = append(slices, "Eko")
+	fmt.Println(len(slices[0]))
 }
 
 func promptOptions(b bill) {
