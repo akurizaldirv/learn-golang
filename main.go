@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
 func main() {
 	// fmt.Println("Hello")
@@ -183,21 +189,77 @@ func main() {
 	// fmt.Println("src address:", &src[0])
 	// fmt.Println("dst address:", &dst[0])
 
-	bill := makeBill("mario's bill")
-	bill.items = map[string]float64{"pie": 25, "burger": 60}
-	bill.tip = 20
+	// bill := makeBill(name)
+	// bill.items = map[string]float64{"pie": 25, "burger": 60}
+	// bill.tip = 20
 
-	bill.updateTip(30)
-	bill.addItem("coca cola", 35)
+	// bill.updateTip(30)
+	// bill.addItem("coca cola", 35)
 
-	billBreakdown := bill.format()
-	fmt.Println(billBreakdown)
+	// billBreakdown := bill.format()
+	// fmt.Println(billBreakdown)
+
+	b := makeBill()
+	promptOptions(b)
+	fmt.Println(b.format())
+}
+
+func promptOptions(b bill) {
+	reader := bufio.NewReader(os.Stdin)
+
+	opt, _ := getInput("Choose an Option (b - save bill || i - add item || t - add tip)", reader)
+
+	switch opt {
+	case "b":
+		saveBill(&b)
+		fmt.Println("--- you choose saved bill", b)
+	case "i":
+		name, _ := getInput("Insert name of menu : ", reader)
+		price, _ := getInput("Insert price of menu : ", reader)
+
+		convPrice, err := strconv.ParseFloat(price, 64)
+
+		if err != nil {
+			fmt.Println("Price must be a number")
+			promptOptions(b)
+		}
+		b.addItem(name, convPrice)
+		fmt.Println(b)
+		promptOptions(b)
+	case "t":
+		t, _ := getInput("Insert tip : ", reader)
+		convTip, _ := strconv.ParseFloat(t, 64)
+		b.updateTip(convTip)
+		promptOptions(b)
+	default:
+		fmt.Println("Invalid Input")
+		promptOptions(b)
+	}
+
+}
+
+func getInput(prompt string, reader *bufio.Reader) (string, error) {
+	fmt.Print(prompt)
+	name, error := reader.ReadString('\n')
+
+	return strings.TrimSpace(name), error
 }
 
 type bill struct {
 	name  string
 	items map[string]float64
 	tip   float64
+}
+
+func saveBill(b *bill) {
+	data := []byte(b.format())
+
+	path := fmt.Sprintf("bill/bill_%v", b.name)
+	err := os.WriteFile(path, data, 0644)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func (b *bill) updateTip(tip float64) {
@@ -208,10 +270,17 @@ func (b *bill) addItem(name string, price float64) {
 	b.items[name] = price
 }
 
-func makeBill(name string) bill {
+func (b *bill) updateName(name string) {
+	b.name = name
+}
+
+func makeBill() bill {
+	reader := bufio.NewReader(os.Stdin)
+	name, _ := getInput("Input name : ", reader)
+
 	return bill{
 		name:  name,
-		items: map[string]float64{},
+		items: make(map[string]float64),
 		tip:   0,
 	}
 }
@@ -221,15 +290,15 @@ func (bill bill) format() string {
 	total := bill.tip
 
 	for k, v := range bill.items {
-		item := fmt.Sprintf("%-25v %0.2f \n", k, v)
+		item := fmt.Sprintf("%-25v ... $%0.2f \n", k, v)
 		str += item
 		total += v
 	}
 
-	str += fmt.Sprintf("%-25v %0.2f \n", "tip", bill.tip)
+	str += fmt.Sprintf("%-25v ... $%0.2f \n", "tip", bill.tip)
 
-	str += "===============================\n"
-	str += fmt.Sprintf("%-25v %0.2f", "TOTAL", total)
+	str += "====================================\n"
+	str += fmt.Sprintf("%-25v ... $%0.2f", "TOTAL", total)
 
 	return str
 }
