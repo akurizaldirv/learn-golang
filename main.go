@@ -203,11 +203,19 @@ func main() {
 	// promptOptions(b)
 	// fmt.Println(b.format())
 
-	slices := make([]string, 2, 5)
-	slices = append(slices, "Eko")
-	slices = append(slices, "Eko")
-	slices = append(slices, "Eko")
-	fmt.Println(len(slices[0]))
+	// slices := make([]string, 2, 5)
+	// slices = append(slices, "Eko")
+	// slices = append(slices, "Eko")
+	// slices = append(slices, "Eko")
+	// fmt.Println(len(slices[0]))
+
+	fruitsStock := make(map[string]int)
+	fruitsStock["banana"] = 3
+	fruitsStock["papaya"] = 4
+	fruitsStock["mango"] = 8
+
+	delete(fruitsStock, "mango")
+	fmt.Println(fruitsStock)
 }
 
 func promptOptions(b bill) {
