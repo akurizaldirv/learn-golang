@@ -5,6 +5,14 @@ import (
 	"fmt"
 )
 
+type MathError struct {
+	Message string
+}
+
+func (error *MathError) Error() string {
+	return error.Message
+}
+
 func Pembagian(value int, devider int) (int, error) {
 	if devider == 0 {
 		return 0, errors.New("Cannot devide by 0")
@@ -13,7 +21,18 @@ func Pembagian(value int, devider int) (int, error) {
 	}
 }
 
+func SaveData(id string) error {
+	if id == "" {
+		return &MathError{Message: "Operation Error"}
+	}
+
+	return nil
+}
+
 func main() {
 	fmt.Println(Pembagian(10, 0))
 	fmt.Println(Pembagian(10, 2))
+
+	fmt.Println(SaveData(""))
+	fmt.Println(SaveData("1"))
 }
