@@ -35,4 +35,13 @@ func main() {
 
 	fmt.Println(SaveData(""))
 	fmt.Println(SaveData("1"))
+
+	error := SaveData("")
+
+	switch value := error.(type) {
+	case *MathError:
+		fmt.Println("math Error", value)
+	default:
+		fmt.Println("Not Error", value)
+	}
 }
