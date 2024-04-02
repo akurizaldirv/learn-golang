@@ -6,6 +6,8 @@ import (
 
 func logging() {
 	fmt.Println("Application Stopped")
+	message := recover()
+	fmt.Println("Panic Message : ", message)
 }
 
 func runProcess() {
@@ -13,8 +15,6 @@ func runProcess() {
 
 	fmt.Println("Running Application")
 	panic("Got This Error")
-	message := recover()
-	fmt.Println("Panic Message : ", message)
 }
 
 func main() {
